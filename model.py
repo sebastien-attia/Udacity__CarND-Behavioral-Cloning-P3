@@ -5,15 +5,16 @@ import numpy as np
 import sklearn
 
 nb_epochs=16
-correction_steering=1
-batch_size=32
+correction_steering=1.0
+batch_size=256
+drop_out=0.5
 
 def _flip_images(img, steering):
     return np.fliplr(img), -steering
 
 data_set = (
-        (["data", "data_r1", "data_r2", "data_r3"], None),
-        (["data", "data_r1", "data_r2", "data_r3"], _flip_images),
+        (["data", "data_r1", "data_r2", "data_r3", "data_r4", "data_r5"], None),
+        (["data", "data_r1", "data_r2", "data_r3", "data_r4", "data_r5"], _flip_images),
     )
 
 def _build_samples(data_set, correction_steering=1):
@@ -75,14 +76,22 @@ model = Sequential()
 model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160,320,3)))
 model.add(Cropping2D(cropping=((50,20), (0,0))))
 model.add(Conv2D(24, (5,5), strides=(2,2), activation="relu"))
+model.add(Dropout(drop_out))
 model.add(Conv2D(36, (5,5), strides=(2,2), activation="relu"))
+model.add(Dropout(drop_out))
 model.add(Conv2D(48, (5,5), strides=(2,2), activation="relu"))
+model.add(Dropout(drop_out))
 model.add(Conv2D(64, (3,3), activation="relu"))
+model.add(Dropout(drop_out))
 model.add(Conv2D(64, (3,3), activation="relu"))
+model.add(Dropout(drop_out))
 model.add(Flatten())
 model.add(Dense(100))
+model.add(Dropout(drop_out))
 model.add(Dense(50))
+model.add(Dropout(drop_out))
 model.add(Dense(10))
+model.add(Dropout(drop_out))
 model.add(Dense(1))
 model.compile(loss='mse', optimizer='adam')
 
