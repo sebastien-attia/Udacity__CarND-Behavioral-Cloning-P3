@@ -6,36 +6,35 @@ Overview
 ---
 
 The model's architecture is the following, [a Convolutional Neural Network used by NVIDIA](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/):
-_________________________________________________________________
 
-Layer (type)               | Output Shape         | Param #    
-:-------------------------- |: ----------------    :|:----------:
-lambda_1 (Lambda)          |  (None, 160, 320, 3)  | 0
-cropping2d_1 (Cropping2D)  |  (None, 75, 320, 3)   | 0      
-conv2d_1 (Conv2D)          |  (None, 75, 320, 3)   | 1 824     
-dropout_1 (Dropout)        |  (None, 36, 158, 24)  | 0
-conv2d_2 (Conv2D)          |  (None, 16, 77, 36)   | 21 636
-dropout_2 (Dropout)        |  (None, 16, 77, 36)   |     0
-conv2d_3 (Conv2D)          |  (None, 6, 37, 48)    | 43 248
-dropout_3 (Dropout)        |  (None, 6, 37, 48)    |     0
-conv2d_4 (Conv2D)          |  (None, 4, 35, 64)    | 27 712
-dropout_4 (Dropout)        |  (None, 4, 35, 64)    |     0
-conv2d_5 (Conv2D)          |  (None, 2, 33, 64)    | 36 928
-dropout_5 (Dropout)        |  (None, 2, 33, 64)    |     0
-flatten_1 (Flatten)        |  (None, 4224)         |     0
-dense_1 (Dense)            |  (None, 100)          | 422 500
-dropout_6 (Dropout)        |  (None, 100)          |     0
-dense_2 (Dense)            |  (None, 50)           |   5 050
-dropout_7 (Dropout)        |  (None, 50)           |     0
-dense_3 (Dense)            |  (None, 10)           |    510
-dropout_8 (Dropout)        |  (None, 10)           |     0
-dense_4 (Dense)            |  (None, 1)            |     11
+
+| Layer (type)               | Output Shape          | Param   |
+| -------------------------- | ----------------      | ------- | 
+| lambda_1 (Lambda)          |  (None, 160, 320, 3)  | 0       |
+| cropping2d_1 (Cropping2D)  |  (None, 75, 320, 3)   | 0       |    
+| conv2d_1 (Conv2D)          |  (None, 75, 320, 3)   | 1 824   |
+| dropout_1 (Dropout)        |  (None, 36, 158, 24)  | 0       |
+| conv2d_2 (Conv2D)          |  (None, 16, 77, 36)   | 21 636  |
+| dropout_2 (Dropout)        |  (None, 16, 77, 36)   |     0   |
+| conv2d_3 (Conv2D)          |  (None, 6, 37, 48)    | 43 248  |
+| dropout_3 (Dropout)        |  (None, 6, 37, 48)    |     0   |
+| conv2d_4 (Conv2D)          |  (None, 4, 35, 64)    | 27 712  |
+| dropout_4 (Dropout)        |  (None, 4, 35, 64)    |     0   |
+| conv2d_5 (Conv2D)          |  (None, 2, 33, 64)    | 36 928  |
+| dropout_5 (Dropout)        |  (None, 2, 33, 64)    |     0   |
+| flatten_1 (Flatten)        |  (None, 4224)         |     0   |
+| dense_1 (Dense)            |  (None, 100)          | 422 500 |
+| dropout_6 (Dropout)        |  (None, 100)          |     0   |
+| dense_2 (Dense)            |  (None, 50)           |   5 050 |
+| dropout_7 (Dropout)        |  (None, 50)           |     0   |
+| dense_3 (Dense)            |  (None, 10)           |    510  |
+| dropout_8 (Dropout)        |  (None, 10)           |     0   |
+| dense_4 (Dense)            |  (None, 1)            |     11  |
 
 
 Total params: 559,419.0  
 Trainable params: 559,419.0  
 Non-trainable params: 0.0  
-_________________________________________________________________
 
 
 I use a Convolutional Neural Network as the Neural Network has to recognize patterns in images, a video being a succession of images.
